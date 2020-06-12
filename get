@@ -1,0 +1,49 @@
+#!/usr/bin/python3.6
+import json
+import sys
+import re
+
+#codigos de cores, nao deu certo ainda
+class bcolors:
+        HEADER = '\033[95m'
+        OKBLUE = '\033[94m'
+        OKGREEN = '\033[92m'
+        WARNING = '\033[93m'
+        FAIL = '\033[91m'
+        ENDC = '\033[0m'
+        BOLD = '\033[1m'
+        UNDERLINE = '\033[4m'
+with open('wn2.json','rt') as j:
+    info = json.load(j)
+print('')
+pos={k:[] for k in info.keys()}
+matches={k:{} for k in info.keys()}
+for (k,v) in info.items():
+    for i in sys.argv[1:]:
+        finds = [(m.start(),m.end()) for m in re.finditer(i,k)]
+        pos[k].extend(finds)
+
+pos2 = {k:v for k,v in pos.items() if len(v)>0}
+revpos2 = reversed(sorted(pos2, key=pos2.get))
+titles={k:'' for k in pos2.keys()}
+n=0
+for k in revpos2:
+    #tentando destacar as palavras encontradas
+    #titles[k] = f'{k[:pos2[k][0][0]]}{bcolors.WARNING}{k[pos2[k][0][0]:pos2[k][0][0]]}{bcolors.ENDC}'
+    #for n,(i,f) in enumerate(pos2[k][1:len(pos2[k])-2]):
+        #titles[k] += f'{k[pos2[k][n-1][f]:pos2[k][n][i]]}{bcolors.WARNING}{k[pos2[k][n][i]:pos2[k][n][f]]}{bcolors.ENDC}'
+    v = info[k]
+    s = '' if n ==0 else f'{n}: '
+    print(f'\n{s}{k.split(" ")[0]}')
+    if type(v) is dict:
+        for k2 in ['contents','links']:
+            if k2 in v.keys():
+                print(f'\n{k2}: ')
+                print(v[k2])
+            else:
+                continue
+    else:
+        print(v)
+    print('-----------------------------------------')
+
+

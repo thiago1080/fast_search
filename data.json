@@ -1,0 +1,16 @@
+{
+    "grgauss flask": "env: p36 (not conda) ~/venvs/p36",
+    "virtualenvwrapper venv virtualenv ambiente_virtual ": {
+        "contents": "\n    mkvirtualenv \n    rmvirtualenv \n    lsvirtualenv \n    workon \n    deactivate",
+        "links": "\n    https://docs.python-guide.org/dev/virtualenvs/"
+    },
+    "virtualenv": {
+        "contents": "\n    pip install virtualenv \n    virtualenv --version \n    cd 'folder' \n    virtualenv -p /usr/bin/python3 'nome_do_env' \n    deactivate"
+    },
+    "arguments_in_python_script": "\n    sys.argv",
+    "string_search_in_python": "\n    string.find()\n    string.rfind() (reverse)\n    string.findall()",
+    "search_all_ocurrences_of_substring": "import re\n[m.start() for m in re.finditer('test', 'test test test test')]",
+    "remove_item_from_list_by_index_and_or_slice": "\n   lista.pop(index) (returns the element)\n    del lista[1:2] (by index or slice)",
+    "remove_item_from_list_by_value": "\n   lista.remove(elemento)\n\nfda\nfdsa\nfdsa\nfdsa\ndf\ndf\nf\nfd\nfd\nkjhlçh\n",
+    "sort_dictionary_keys_by_value": "\n    sorted(A, key=A.get)"
+}
